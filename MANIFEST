@@ -1,0 +1,7 @@
+Changes
+MANIFEST
+Makefile.PL
+README
+lib/Attribute/Protected.pm
+t/00_compile.t
+t/01_protected.t
