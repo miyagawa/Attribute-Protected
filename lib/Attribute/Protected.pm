@@ -130,6 +130,6 @@ modify it under the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-L<Attribute::Handlers>, L<Protect>, L<Class::Fields>
+L<Attribute::Handlers>, L<protect>, L<Class::Fields>
 
 =cut

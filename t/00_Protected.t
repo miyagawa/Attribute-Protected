@@ -46,15 +46,15 @@ like($@, qr/protected/, 'call protected from outside');
 
 # OK: public
 eval { $some->baz };
-is($@, undef, 'call public');
+is($@, '', 'call public');
 
 # OK: private
 eval { $some->call_foo };
-is($@, undef, 'call private from inside');
+is($@, '', 'call private from inside');
 
 # OK: protected
 eval { $some->call_bar };
-is($@, undef, 'call protected from inside');
+is($@, '', 'call protected from inside');
 
 my $derived = bless {}, 'DerivedClass';
 
@@ -64,5 +64,5 @@ like($@, qr/private/, 'call private from derived');
 
 # OK: protected
 eval { $derived->call_bar_direct };
-is($@, undef, 'call protected from derived');
+is($@, '', 'call protected from derived');
 
