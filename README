@@ -5,9 +5,9 @@ SYNOPSIS
       package SomeClass;
       use Attribute::Protected;
 
-      sub foo  :Public    { }
-      sub _bar :Private   { }
-      sub _baz :Protected { }
+      sub foo  : Public    { }
+      sub _bar : Private   { }
+      sub _baz : Protected { }
 
       sub another {
           my $self = shift;
@@ -39,17 +39,17 @@ DESCRIPTION
 
 ATTRIBUTES
     Public
-          sub foo :Public { }
+          sub foo : Public { }
 
         just a mark. Can be called from everywhere.
 
     Private
-          sub _bar :Private { }
+          sub _bar : Private { }
 
         Can't be called from outside the class where it was declared.
 
     Protected
-          sub _baz :Protected { }
+          sub _baz : Protected { }
 
         Can be called from the class where it was declared or its derived
         classes.
@@ -57,8 +57,14 @@ ATTRIBUTES
     When called from inappropriate classes, those methods throw an exception
     like "foo() is a protected method of Foo!".
 
+THOUGHT
+    *   attributes (public, private and proteced) should be lowercased?
+
 AUTHOR
-    Tatsuhiko Miyagawa, <miyagawa@bulknews.net>
+    Tatsuhiko Miyagawa <miyagawa@bulknews.net>
+
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
 
 SEE ALSO
     the Attribute::Handlers manpage, the Protect manpage, the Class::Fields

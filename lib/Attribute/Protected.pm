@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Attribute::Handlers;
 
@@ -15,7 +15,7 @@ sub UNIVERSAL::Protected : ATTR(CODE) {
     *{$symbol} = sub {
 	unless (caller->isa($package)) {
 	    require Carp;
-	    Carp::croak "$meth() is a preotected method of $package!";
+	    Carp::croak "$meth() is a protected method of $package!";
 	}
 	goto &$referent;
     };
@@ -113,7 +113,7 @@ exception like C<foo() is a protected method of Foo!>.
 
 =head1 THOUGHT
 
-=over4
+=over 4
 
 =item *
 

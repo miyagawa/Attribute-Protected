@@ -1,9 +1,9 @@
 use strict;
-use Test;
-BEGIN { plan tests => 7 }
+use Test::More tests => 8;
+
+BEGIN { use_ok('Attribute::Protected') }
 
 package SomeClass;
-use Attribute::Protected;
 
 sub foo :Private   { }
 sub bar :Protected { }
@@ -38,31 +38,31 @@ my $some = bless {}, 'SomeClass';
 
 # NG: private
 eval { $some->foo };
-ok($@ =~ /private/);
+like($@, qr/private/, 'call private from outside');
 
 # NG: protected
 eval { $some->bar };
-ok($@ =~ /protected/);
+like($@, qr/protected/, 'call protected from outside');
 
 # OK: public
 eval { $some->baz };
-ok(! $@);
+is($@, undef, 'call public');
 
 # OK: private
 eval { $some->call_foo };
-ok(! $@);
+is($@, undef, 'call private from inside');
 
 # OK: protected
 eval { $some->call_bar };
-ok(! $@);
+is($@, undef, 'call protected from inside');
 
 my $derived = bless {}, 'DerivedClass';
 
 # NG: private
 eval { $derived->call_foo_direct };
-ok($@ =~ /private/);
+like($@, qr/private/, 'call private from derived');
 
 # OK: protected
 eval { $derived->call_bar_direct };
-ok(! $@);
+is($@, undef, 'call protected from derived');
 

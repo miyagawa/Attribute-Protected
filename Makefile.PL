@@ -6,6 +6,7 @@ WriteMakefile(
     'VERSION_FROM'	=> 'lib/Attribute/Protected.pm', # finds $VERSION
     'PREREQ_PM'		=> {
 	Attribute::Handlers => 0.70,
+	Test::More          => 0,
     }, # e.g., Module::Name => 1.1
     AUTHOR     => 'Tatsuhiko Miyagawa <miyagawa@bulknews.net>',
 );
